@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/black_line"/>
 
-    <view
+    <View
         android:id="@+id/black_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
