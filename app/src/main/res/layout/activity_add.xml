@@ -46,7 +46,7 @@
     <EditText
         android:id="@+id/edit_content"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="400dp"
         android:layout_margin="20dp"
         android:padding="5dp"
         android:hint="CONTENT"
