@@ -25,6 +25,7 @@ class RcViewAdapter(val context: Context, val memos: List<Memo>) : RecyclerView.
                 val i = Intent(itemView.context, DetailActivity::class.java)
                 i.putExtra("title", memo.title)
                 i.putExtra("content", memo.content)
+                i.putExtra("time", memo.time)
                 itemView.context.startActivity(i)
             }
         }

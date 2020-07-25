@@ -16,4 +16,7 @@ interface MemoDao {
 
     @Query("DELETE FROM memo ")
     fun deleteAll()
+
+    @Query("DELETE FROM memo WHERE time = :time")
+    fun delete(time : String)
 }
