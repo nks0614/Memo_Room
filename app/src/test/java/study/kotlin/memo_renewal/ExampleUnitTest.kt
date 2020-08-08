@@ -1,4 +1,4 @@
-package study.kotlin.memo_room
+package study.kotlin.memo_renewal
 
 import org.junit.Test
 

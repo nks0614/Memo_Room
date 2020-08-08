@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Memo_Room"
+rootProject.name = "Memo_Renewal"

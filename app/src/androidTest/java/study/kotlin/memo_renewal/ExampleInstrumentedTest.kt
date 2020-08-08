@@ -1,4 +1,4 @@
-package study.kotlin.memo_room
+package study.kotlin.memo_renewal
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("study.kotlin.memo_room", appContext.packageName)
+        assertEquals("study.kotlin.memo_renewal", appContext.packageName)
     }
 }
