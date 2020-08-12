@@ -10,21 +10,17 @@ class MainViewModel : ViewModel() {
 
     val btn = SingleLiveEvent<Unit>()
 
-    private var memos = listOf<Memo>()
-    private val memoList = ArrayList<Memo>()
+    private var memoList = ArrayList<Memo>()
 
     val mAdapter = RcViewAdapter()
 
-    init {
-        mAdapter.setList(memoList)
-    }
+    init { mAdapter.setList(memoList) }
 
     var memoDB : DataBase? = null
 
     fun load(){
         memoList.clear()
-        memos = memoDB?.dao()?.getAll()!!
-        memoList.addAll(memos)
+        memoList.addAll(memoDB?.dao()?.getAll()!!)
         mAdapter.notifyDataSetChanged()
     }
 

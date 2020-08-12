@@ -28,22 +28,22 @@ class ContentActivity : AppCompatActivity() {
 
         cViewModel.memoDB = DataBase.getInstance(this)
 
+        val id = intent.getLongExtra("id", 0)
         val contents = intent.getStringExtra("content")
         val title = intent.getStringExtra("title")
-        val time = intent.getStringExtra("time")
 
         with(cViewModel){
             cTitle.value = title
             cContents.value = contents
 
             delBtn.observe(this@ContentActivity, Observer {
-                delete(title, time)
+                delete(id)
                 startActivity(Intent(this@ContentActivity, MainActivity::class.java))
                 finish()
             })
 
             updateBtn.observe(this@ContentActivity, Observer {
-                update(time)
+                update(id)
                 startActivity(Intent(this@ContentActivity, MainActivity::class.java))
                 finish()
             })

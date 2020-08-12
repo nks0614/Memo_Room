@@ -20,7 +20,7 @@ class AddViewModel : ViewModel() {
     fun addMemo(){
         var now : Long = System.currentTimeMillis()
         var date : Date = Date(now)
-        var fmNow  : SimpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        var fmNow  : SimpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm")
         var fmDate : String = fmNow.format(date)
 
         val newMemo = Memo(

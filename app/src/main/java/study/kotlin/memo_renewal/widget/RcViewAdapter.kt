@@ -29,6 +29,7 @@ class RcViewAdapter :RecyclerView.Adapter<RcViewAdapter.Holder>(){
                 i.putExtra("content", memo.content)
                 i.putExtra("title", memo.title)
                 i.putExtra("time", memo.time)
+                i.putExtra("id", memo.id)
 
                 itemView.context.startActivity(i)
             }
