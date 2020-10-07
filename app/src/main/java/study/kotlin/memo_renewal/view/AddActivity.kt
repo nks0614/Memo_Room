@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import study.kotlin.memo_renewal.MainActivity
 import study.kotlin.memo_renewal.R
 import study.kotlin.memo_renewal.databinding.ActivityAddBinding
-import study.kotlin.memo_renewal.room.DataBase
+import study.kotlin.memo_renewal.model.DataBase
 import study.kotlin.memo_renewal.viewmodel.AddViewModel
 
 class AddActivity : AppCompatActivity() {

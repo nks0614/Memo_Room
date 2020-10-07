@@ -1,4 +1,4 @@
-package study.kotlin.memo_renewal.room
+package study.kotlin.memo_renewal.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

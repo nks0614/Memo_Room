@@ -1,4 +1,4 @@
-package study.kotlin.memo_renewal.room
+package study.kotlin.memo_renewal.model
 
 import androidx.room.Dao
 import androidx.room.Insert

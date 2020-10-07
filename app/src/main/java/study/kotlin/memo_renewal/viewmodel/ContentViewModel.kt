@@ -2,7 +2,7 @@ package study.kotlin.memo_renewal.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import study.kotlin.memo_renewal.room.DataBase
+import study.kotlin.memo_renewal.model.DataBase
 import study.kotlin.memo_renewal.widget.SingleLiveEvent
 import java.text.SimpleDateFormat
 import java.util.*

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import study.kotlin.memo_renewal.R
-import study.kotlin.memo_renewal.room.Memo
+import study.kotlin.memo_renewal.model.Memo
 import study.kotlin.memo_renewal.view.ContentActivity
 
 class RcViewAdapter :RecyclerView.Adapter<RcViewAdapter.Holder>(){

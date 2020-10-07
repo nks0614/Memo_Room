@@ -1,8 +1,8 @@
 package study.kotlin.memo_renewal.viewmodel
 
 import androidx.lifecycle.ViewModel
-import study.kotlin.memo_renewal.room.DataBase
-import study.kotlin.memo_renewal.room.Memo
+import study.kotlin.memo_renewal.model.DataBase
+import study.kotlin.memo_renewal.model.Memo
 import study.kotlin.memo_renewal.widget.RcViewAdapter
 import study.kotlin.memo_renewal.widget.SingleLiveEvent
 
