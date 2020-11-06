@@ -31,7 +31,7 @@ class AddActivity : AppCompatActivity() {
         with(aViewModel){
             btn.observe(this@AddActivity, Observer {
                 addMemo()
-                startActivity(Intent(this@AddActivity, MainActivity::class.java))
+                startActivity(Intent(this@AddActivity, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             })
         }

@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import study.kotlin.memo_renewal.databinding.ActivityMainBinding
+
 import study.kotlin.memo_renewal.model.DataBase
 import study.kotlin.memo_renewal.view.AddActivity
 import study.kotlin.memo_renewal.viewmodel.MainViewModel
