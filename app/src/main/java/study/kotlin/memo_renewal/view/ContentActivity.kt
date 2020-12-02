@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import study.kotlin.memo_renewal.MainActivity
 import study.kotlin.memo_renewal.R
 import study.kotlin.memo_renewal.databinding.ActivityContentBinding
 import study.kotlin.memo_renewal.model.DataBase

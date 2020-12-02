@@ -1,4 +1,4 @@
-package study.kotlin.memo_renewal
+package study.kotlin.memo_renewal.view
 
 import android.app.Activity
 import android.content.Intent
@@ -9,10 +9,10 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import study.kotlin.memo_renewal.R
 import study.kotlin.memo_renewal.databinding.ActivityMainBinding
 
 import study.kotlin.memo_renewal.model.DataBase
-import study.kotlin.memo_renewal.view.AddActivity
 import study.kotlin.memo_renewal.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
