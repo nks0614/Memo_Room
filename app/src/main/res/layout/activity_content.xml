@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="contentViewModel"
+            name="viewModel"
             type="study.kotlin.memo_renewal.viewmodel.ContentViewModel" />
     </data>
 
@@ -25,7 +25,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:text="@={contentViewModel.cTitle}"
+                android:text="@={viewModel.cTitle}"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
                 android:gravity="top"
                 android:hint="Content"
                 android:padding="8dp"
-                android:text="@={contentViewModel.cContents}"
+                android:text="@={viewModel.cContents}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Title_c" />
@@ -52,7 +52,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:text="DEL"
-                android:onClick="@{()->contentViewModel.delBtnClick()}"
+                android:onClick="@{()->viewModel.delBtnClick()}"
                 app:layout_constraintEnd_toStartOf="@+id/upBtn"
                 app:layout_constraintTop_toBottomOf="@+id/contents_c" />
 
@@ -63,7 +63,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:text="UPDATE"
-                android:onClick="@{()->contentViewModel.upBtnClick()}"
+                android:onClick="@{()->viewModel.upBtnClick()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contents_c" />
 

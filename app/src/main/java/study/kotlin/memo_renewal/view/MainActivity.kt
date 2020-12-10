@@ -9,55 +9,67 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import study.kotlin.memo_renewal.R
+import study.kotlin.memo_renewal.base.BaseActivity
 import study.kotlin.memo_renewal.databinding.ActivityMainBinding
 
 import study.kotlin.memo_renewal.model.DataBase
 import study.kotlin.memo_renewal.viewmodel.MainViewModel
+import study.kotlin.memo_renewal.widget.RcViewAdapter
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
-    lateinit var mBinding : ActivityMainBinding
-    lateinit var mViewModel : MainViewModel
 
-    private lateinit var backPressHandler: onBackPressHandler
+    private lateinit var backPressHandler: OnBackPressHandler
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override val viewModel: MainViewModel = MainViewModel()
 
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        mViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mBinding.mainViewModel = mViewModel
-        mBinding.lifecycleOwner = this
-        mBinding.executePendingBindings()
+    override val layoutRes: Int
+        get() = R.layout.activity_main
 
-        mViewModel.memoDB = DataBase.getInstance(this)
+    val scope = CoroutineScope(Dispatchers.IO)
 
-        mViewModel.load()
+    val mAdapter = RcViewAdapter(viewModel.memoList)
 
-        backPressHandler = onBackPressHandler(this@MainActivity)
 
-        with(mViewModel){
+    override fun init() {
+        mRcView.adapter = mAdapter
+        with(viewModel){
+            memoDB = DataBase.getInstance(this@MainActivity)
+            load()
+
+        }
+        mAdapter.notifyDataSetChanged()
+
+        backPressHandler = OnBackPressHandler(this)
+    }
+
+    override fun observerViewModel() {
+        with(viewModel){
             btn.observe(this@MainActivity, Observer {
                 startActivity(Intent(this@MainActivity, AddActivity::class.java))
-                finish()
             })
-        }
 
+
+        }
     }
 
     override fun onDestroy(){
         DataBase.destroyInstance()
-        mViewModel.memoDB = null
+        viewModel.memoDB = null
         super.onDestroy()
-        finish()
     }
 
     override fun onBackPressed() {
         backPressHandler.onBackPressed()
     }
 
-    inner class onBackPressHandler(var activity : Activity){
+    inner class OnBackPressHandler(var activity : Activity){
         private var backPressHandler: Long = 0
         fun onBackPressed(){
             if(System.currentTimeMillis() > backPressHandler+2000){
@@ -70,6 +82,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
 
 }

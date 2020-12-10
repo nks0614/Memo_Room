@@ -10,18 +10,12 @@ import study.kotlin.memo_renewal.R
 import study.kotlin.memo_renewal.model.Memo
 import study.kotlin.memo_renewal.view.ContentActivity
 
-class RcViewAdapter :RecyclerView.Adapter<RcViewAdapter.Holder>(){
-    lateinit var memoList : ArrayList<Memo>
+class RcViewAdapter(val memoList : ArrayList<Memo>) : RecyclerView.Adapter<RcViewAdapter.Holder>() {
 
-    fun setList(list : ArrayList<Memo>){
-        if(::memoList.isInitialized) return
-        memoList = list
-    }
-
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTv = itemView.findViewById<TextView>(R.id.title)
         val timeTv = itemView.findViewById<TextView>(R.id.time)
-        fun bind(memo : Memo) {
+        fun bind(memo: Memo) {
             titleTv.text = memo.title
             timeTv.text = memo.time
             itemView.setOnClickListener {

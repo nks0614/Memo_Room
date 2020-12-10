@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="addViewModel"
+            name="viewModel"
             type="study.kotlin.memo_renewal.viewmodel.AddViewModel" />
     </data>
 
@@ -27,7 +27,7 @@
                 android:padding="8dp"
                 android:ems="10"
                 android:hint="Title"
-                android:text="@={addViewModel.title}"
+                android:text="@={viewModel.title}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,7 +42,7 @@
                 android:gravity="top"
                 android:hint="Content"
                 android:background="@drawable/teduri"
-                android:text="@={addViewModel.contents}"
+                android:text="@={viewModel.contents}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Title" />
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                android:onClick="@{()->addViewModel.btnClick()}"
+                android:onClick="@{()->viewModel.btnClick()}"
                 android:text="Save"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contents" />

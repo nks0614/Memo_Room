@@ -6,52 +6,65 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import study.kotlin.memo_renewal.R
+import study.kotlin.memo_renewal.base.BaseActivity
 import study.kotlin.memo_renewal.databinding.ActivityContentBinding
 import study.kotlin.memo_renewal.model.DataBase
 import study.kotlin.memo_renewal.viewmodel.ContentViewModel
 
-class ContentActivity : AppCompatActivity() {
+class ContentActivity : BaseActivity<ActivityContentBinding, ContentViewModel>() {
 
-    lateinit var cBinding : ActivityContentBinding
-    lateinit var cViewModel : ContentViewModel
+    override val viewModel: ContentViewModel = ContentViewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override val layoutRes: Int
+        get() = R.layout.activity_content
 
-        cBinding = DataBindingUtil.setContentView(this, R.layout.activity_content)
-        cViewModel = ViewModelProvider(this)[ContentViewModel::class.java]
-        cBinding.contentViewModel = cViewModel
-        cBinding.lifecycleOwner = this
-        cBinding.executePendingBindings()
+    var id : Long = 0
+    lateinit var contents : String
+    lateinit var title : String
 
-        cViewModel.memoDB = DataBase.getInstance(this)
+    val scope = CoroutineScope(Dispatchers.IO)
 
-        val id = intent.getLongExtra("id", 0)
-        val contents = intent.getStringExtra("content")
-        val title = intent.getStringExtra("title")
+    override fun init() {
+        id = intent.getLongExtra("id", 0)
+        contents = intent.getStringExtra("content")
+        title = intent.getStringExtra("title")
 
-        with(cViewModel){
+        with(viewModel){
+            memoDB = DataBase.getInstance(this@ContentActivity)
             cTitle.value = title
             cContents.value = contents
+        }
+    }
 
+    override fun observerViewModel() {
+        with(viewModel){
             delBtn.observe(this@ContentActivity, Observer {
-                delete(id)
-                startActivity(Intent(this@ContentActivity, MainActivity::class.java))
+                scope.launch {
+                    delete(id)
+                }
+                startActivity(Intent(this@ContentActivity, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             })
 
             updateBtn.observe(this@ContentActivity, Observer {
-                update(id)
-                startActivity(Intent(this@ContentActivity, MainActivity::class.java))
+                scope.launch {
+                    update(id)
+                }
+                startActivity(Intent(this@ContentActivity, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             })
         }
-
     }
+
     override fun onDestroy(){
         DataBase.destroyInstance()
-        cViewModel.memoDB = null
+        viewModel.memoDB = null
         super.onDestroy()
     }
+
+
 }

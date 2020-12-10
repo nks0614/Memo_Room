@@ -6,40 +6,51 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import study.kotlin.memo_renewal.R
+import study.kotlin.memo_renewal.base.BaseActivity
 import study.kotlin.memo_renewal.databinding.ActivityAddBinding
 import study.kotlin.memo_renewal.model.DataBase
 import study.kotlin.memo_renewal.viewmodel.AddViewModel
 
-class AddActivity : AppCompatActivity() {
+class AddActivity : BaseActivity<ActivityAddBinding, AddViewModel>() {
 
-    lateinit var aBinding : ActivityAddBinding
-    lateinit var aViewModel: AddViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override val viewModel: AddViewModel = AddViewModel()
 
-        aBinding = DataBindingUtil.setContentView(this, R.layout.activity_add)
-        aViewModel = ViewModelProvider(this)[AddViewModel::class.java]
-        aBinding.addViewModel = aViewModel
-        aBinding.lifecycleOwner = this
-        aBinding.executePendingBindings()
+    override val layoutRes: Int
+        get() = R.layout.activity_add
 
-        aViewModel.memoDB = DataBase.getInstance(this)
+    val scope = CoroutineScope(Dispatchers.IO)
 
-        with(aViewModel){
+    override fun init() {
+        with(viewModel){
+            memoDB = DataBase.getInstance(this@AddActivity)
+        }
+    }
+
+    override fun observerViewModel() {
+        with(viewModel){
             btn.observe(this@AddActivity, Observer {
-                addMemo()
+                scope.launch {
+                    addMemo()
+                }
+
                 startActivity(Intent(this@AddActivity, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             })
         }
 
     }
+
     override fun onDestroy(){
         DataBase.destroyInstance()
-        aViewModel.memoDB = null
+        viewModel.memoDB = null
         super.onDestroy()
     }
+
 
 }

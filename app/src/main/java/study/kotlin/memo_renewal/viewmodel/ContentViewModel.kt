@@ -2,12 +2,13 @@ package study.kotlin.memo_renewal.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import study.kotlin.memo_renewal.base.BaseViewModel
 import study.kotlin.memo_renewal.model.DataBase
 import study.kotlin.memo_renewal.widget.SingleLiveEvent
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ContentViewModel : ViewModel() {
+class ContentViewModel : BaseViewModel() {
 
     var memoDB : DataBase? = null
     val cTitle = MutableLiveData<String>()
@@ -15,11 +16,11 @@ class ContentViewModel : ViewModel() {
     val updateBtn = SingleLiveEvent<Unit>()
     val delBtn = SingleLiveEvent<Unit>()
 
-    fun delete(id : Long){
+    suspend fun delete(id : Long){
         memoDB?.dao()?.delete(id)
     }
 
-    fun update(id : Long){
+    suspend fun update(id : Long){
         var now : Long = System.currentTimeMillis()
         var date : Date = Date(now)
         var fmNow  : SimpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm")
