@@ -1,5 +1,6 @@
 package study.kotlin.memo_renewal.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import study.kotlin.memo_renewal.base.BaseViewModel
@@ -14,11 +15,16 @@ class MainViewModel : BaseViewModel() {
 
     var memoList = ArrayList<Memo>()
 
+    var items : LiveData<List<Memo>> = MutableLiveData<List<Memo>>()
+
     var memoDB : DataBase? = null
 
     fun load(){
         memoList.clear()
-        memoList.addAll(memoDB?.dao()?.getAll()!!)
+        memoDB?.let {
+            items = it.dao().getAll()
+        }
+
     }
 
     fun btnClick(){

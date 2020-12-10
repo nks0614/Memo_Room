@@ -32,8 +32,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val layoutRes: Int
         get() = R.layout.activity_main
 
-    val scope = CoroutineScope(Dispatchers.IO)
-
     val mAdapter = RcViewAdapter(viewModel.memoList)
 
 
@@ -42,10 +40,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         with(viewModel){
             memoDB = DataBase.getInstance(this@MainActivity)
             load()
-
         }
-        mAdapter.notifyDataSetChanged()
-
         backPressHandler = OnBackPressHandler(this)
     }
 
@@ -55,6 +50,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 startActivity(Intent(this@MainActivity, AddActivity::class.java))
             })
 
+            items.observe(this@MainActivity, Observer {
+                mAdapter.memoList.clear()
+                mAdapter.memoList.addAll(it)
+                mAdapter.notifyDataSetChanged()
+            })
 
         }
     }
