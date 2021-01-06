@@ -10,7 +10,7 @@ import study.kotlin.memo_renewal.R
 import study.kotlin.memo_renewal.model.Memo
 import study.kotlin.memo_renewal.view.ContentActivity
 
-class RcViewAdapter(val memoList : ArrayList<Memo>) : RecyclerView.Adapter<RcViewAdapter.Holder>() {
+class   RcViewAdapter(val memoList : ArrayList<Memo>) : RecyclerView.Adapter<RcViewAdapter.Holder>() {
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTv = itemView.findViewById<TextView>(R.id.title)
