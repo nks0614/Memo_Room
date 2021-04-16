@@ -1,6 +1,5 @@
 package study.kotlin.memo_renewal.model
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -8,7 +7,7 @@ import androidx.room.Query
 @Dao
 interface Dao {
     @Query("SELECT * FROM Memo")
-    fun getAll(): LiveData<List<Memo>>
+    fun getAll(): List<Memo>
 
     @Insert
     suspend fun insert(memo : Memo)

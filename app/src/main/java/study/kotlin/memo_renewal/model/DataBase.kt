@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 @Database(entities = [Memo::class], version = 3)
 abstract class DataBase : RoomDatabase() {
 
-    abstract  fun dao() : Dao
+    abstract fun dao() : Dao
 
     companion object{
         private var INSTANCE : DataBase? = null

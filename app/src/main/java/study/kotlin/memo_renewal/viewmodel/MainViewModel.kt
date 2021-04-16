@@ -13,16 +13,13 @@ class MainViewModel : BaseViewModel() {
 
     val btn = SingleLiveEvent<Unit>()
 
-    var memoList = ArrayList<Memo>()
-
-    var items : LiveData<List<Memo>> = MutableLiveData<List<Memo>>()
+    var memoList : MutableLiveData<ArrayList<Memo>> = MutableLiveData()
 
     var memoDB : DataBase? = null
 
     fun load(){
-        memoList.clear()
         memoDB?.let {
-            items = it.dao().getAll()
+            memoList.value = ArrayList(it.dao().getAll())
         }
 
     }

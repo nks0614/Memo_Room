@@ -30,8 +30,8 @@ class ContentActivity : BaseActivity<ActivityContentBinding, ContentViewModel>()
 
     override fun init() {
         id = intent.getLongExtra("id", 0)
-        contents = intent.getStringExtra("content")
-        title = intent.getStringExtra("title")
+        contents = intent.getStringExtra("content") ?: ""
+        title = intent.getStringExtra("title") ?: ""
 
         with(viewModel){
             memoDB = DataBase.getInstance(this@ContentActivity)
