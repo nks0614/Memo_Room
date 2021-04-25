@@ -1,5 +1,9 @@
 Room을 활용한 메모장
 ====================
+
+Android Jetpack (ViewModel, LiveData, Databinding, Room)
+MVVM 패턴
+
 **2020.06.26** 제작 시작<br>
 
 **2020.06.29** 기본 기능 제작<br>
